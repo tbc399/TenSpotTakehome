@@ -1,0 +1,12 @@
+[tool.black]
+line-length = 110
+skip-string-normalization = true
+string-normalization = false
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+  | \.git
+  | \.venv
+)/
+'''

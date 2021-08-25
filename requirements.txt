@@ -1,0 +1,5 @@
+Django
+djangorestframework
+faker
+faker_music
+flake8
