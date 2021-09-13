@@ -5,35 +5,37 @@ from rest_framework import serializers
 from .models import *
 
 
-class AuthorListSerializer(serializers.ModelSerializer):
+class AuthorBookSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = Author
-        fields = ('id', 'first_name', 'last_name')
+        model = Book
+        fields = ('id', 'title')
+        
 
-    
 class AuthorSerializer(serializers.ModelSerializer):
+    
+    books = AuthorBookSerializer(many=True)
     
     class Meta:
         model = Author
         fields = ('id', 'first_name', 'last_name', 'books')
-        list_serializer_class = AuthorListSerializer
-        depth = 1
+
+
+class AuthorDeserializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Author
+        fields = ('id', 'first_name', 'last_name', 'books')
+        read_only_fields = ('id',)
 
 
 class BookSerializer(serializers.ModelSerializer):
     
-    available_for_checkout = serializers.SerializerMethodField()
-    
     class Meta:
         model = Book
-        fields = ('id', 'title', 'publish_year', 'genre', 'authors', 'available_for_checkout')
+        fields = ('id', 'title', 'publish_year', 'genre', 'authors')
         depth = 1
         
-    def get_available_for_checkout(self, obj):
-        #return obj.books
-        return None
-
 
 class BookDeserializer(serializers.ModelSerializer):
     
@@ -41,6 +43,16 @@ class BookDeserializer(serializers.ModelSerializer):
         model = Book
         fields = ('id', 'title', 'publish_year', 'genre', 'authors')
         read_only_fields = ('id',)
+        
+
+class CheckoutsSerializer(serializers.Serializer):
+    book_id = serializers.IntegerField()
+    book_title = serializers.CharField(max_length=128)
+    due_date = serializers.DateField()
+    user = serializers.DictField()
+    
+    class Meta:
+        read_only_fields = ('book_id', 'book_title', 'user')
     
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -58,9 +70,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'role', 'books')
+        depth = 2
     
-    def get_role(self, obj):
+    def get_role(self, obj: User):
         return obj.groups.first().name if obj.groups.exists() else None
     
-    def get_books(self, obj):
-        return "asdf"
+    def get_books(self, obj: User):
+        books = obj.checkout_leger.filter(
+            return_time__isnull=True).values_list('book_id', 'book__title')
+        return [{'id': book_id, 'title': title} for book_id, title in books]

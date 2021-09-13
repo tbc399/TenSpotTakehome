@@ -1,0 +1,570 @@
+[
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add checkout leger",
+        "content_type": [
+            "library",
+            "checkoutleger"
+        ],
+        "codename": "add_checkoutleger"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change checkout leger",
+        "content_type": [
+            "library",
+            "checkoutleger"
+        ],
+        "codename": "change_checkoutleger"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete checkout leger",
+        "content_type": [
+            "library",
+            "checkoutleger"
+        ],
+        "codename": "delete_checkoutleger"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view checkout leger",
+        "content_type": [
+            "library",
+            "checkoutleger"
+        ],
+        "codename": "view_checkoutleger"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add book",
+        "content_type": [
+            "library",
+            "book"
+        ],
+        "codename": "add_book"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change book",
+        "content_type": [
+            "library",
+            "book"
+        ],
+        "codename": "change_book"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete book",
+        "content_type": [
+            "library",
+            "book"
+        ],
+        "codename": "delete_book"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view book",
+        "content_type": [
+            "library",
+            "book"
+        ],
+        "codename": "view_book"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add author",
+        "content_type": [
+            "library",
+            "author"
+        ],
+        "codename": "add_author"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change author",
+        "content_type": [
+            "library",
+            "author"
+        ],
+        "codename": "change_author"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete author",
+        "content_type": [
+            "library",
+            "author"
+        ],
+        "codename": "delete_author"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view author",
+        "content_type": [
+            "library",
+            "author"
+        ],
+        "codename": "view_author"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add genre",
+        "content_type": [
+            "library",
+            "genre"
+        ],
+        "codename": "add_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change genre",
+        "content_type": [
+            "library",
+            "genre"
+        ],
+        "codename": "change_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete genre",
+        "content_type": [
+            "library",
+            "genre"
+        ],
+        "codename": "delete_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view genre",
+        "content_type": [
+            "library",
+            "genre"
+        ],
+        "codename": "view_genre"
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Administrator",
+        "permissions": [
+            [
+                "view_user",
+                "auth",
+                "user"
+            ],
+            [
+                "add_author",
+                "library",
+                "author"
+            ],
+            [
+                "change_author",
+                "library",
+                "author"
+            ],
+            [
+                "delete_author",
+                "library",
+                "author"
+            ],
+            [
+                "view_author",
+                "library",
+                "author"
+            ],
+            [
+                "add_book",
+                "library",
+                "book"
+            ],
+            [
+                "change_book",
+                "library",
+                "book"
+            ],
+            [
+                "delete_book",
+                "library",
+                "book"
+            ],
+            [
+                "view_book",
+                "library",
+                "book"
+            ],
+            [
+                "add_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "change_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "delete_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "view_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "add_genre",
+                "library",
+                "genre"
+            ],
+            [
+                "change_genre",
+                "library",
+                "genre"
+            ],
+            [
+                "delete_genre",
+                "library",
+                "genre"
+            ],
+            [
+                "view_genre",
+                "library",
+                "genre"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Editor",
+        "permissions": [
+            [
+                "add_author",
+                "library",
+                "author"
+            ],
+            [
+                "change_author",
+                "library",
+                "author"
+            ],
+            [
+                "view_author",
+                "library",
+                "author"
+            ],
+            [
+                "add_book",
+                "library",
+                "book"
+            ],
+            [
+                "change_book",
+                "library",
+                "book"
+            ],
+            [
+                "view_book",
+                "library",
+                "book"
+            ],
+            [
+                "add_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "change_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "delete_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "view_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "add_genre",
+                "library",
+                "genre"
+            ],
+            [
+                "change_genre",
+                "library",
+                "genre"
+            ],
+            [
+                "view_genre",
+                "library",
+                "genre"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "General",
+        "permissions": [
+            [
+                "view_author",
+                "library",
+                "author"
+            ],
+            [
+                "view_book",
+                "library",
+                "book"
+            ],
+            [
+                "add_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "change_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "delete_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "view_checkoutleger",
+                "library",
+                "checkoutleger"
+            ],
+            [
+                "view_genre",
+                "library",
+                "genre"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$7wjoEgaD4QVuZosAzAixbO$gyPHHLiugTxUHjYceLjuLUKMmUJ3aYqtG4gjEFIR2ok=",
+        "last_login": "2021-09-13T09:11:02.544Z",
+        "is_superuser": true,
+        "username": "super",
+        "first_name": "",
+        "last_name": "",
+        "email": "super@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2021-09-13T08:48:27.583Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$k4zAAbtpTyWmWoUUnRyqlI$wpnA5xwA7y/O/QetGRSQO/ZLnSMgZF/SQm3yzdetOlQ=",
+        "last_login": "2021-09-13T09:23:05.412Z",
+        "is_superuser": false,
+        "username": "frank-editor",
+        "first_name": "Frank",
+        "last_name": "Smith",
+        "email": "frank@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-09-13T09:14:45Z",
+        "groups": [
+            [
+                "Editor"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$43OWfwQhN49mcpLERCILKJ$rZpG7hlzOiR+1/liCFykvlHhjWE2D+GNHKFY85o5+Xg=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "john-admin",
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "john@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-09-13T09:16:33Z",
+        "groups": [
+            [
+                "Administrator"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$260000$KSyKww2M6emkYzUTwGrUUv$ukLI/nuwcCtdmr8RkxeHL8w0xSxIZLqg2Ja/fIlawmY=",
+        "last_login": "2021-09-13T09:21:21.212Z",
+        "is_superuser": false,
+        "username": "dave-general",
+        "first_name": "Dave",
+        "last_name": "Jones",
+        "email": "dave@email.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2021-09-13T09:17:54Z",
+        "groups": [
+            [
+                "General"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "library.author",
+    "pk": 1,
+    "fields": {
+        "first_name": "John",
+        "last_name": "Wayne"
+    }
+},
+{
+    "model": "library.author",
+    "pk": 2,
+    "fields": {
+        "first_name": "Phil",
+        "last_name": "Collins"
+    }
+},
+{
+    "model": "library.author",
+    "pk": 3,
+    "fields": {
+        "first_name": "Tom",
+        "last_name": "Green"
+    }
+},
+{
+    "model": "library.genre",
+    "pk": 1,
+    "fields": {
+        "name": "Mystery"
+    }
+},
+{
+    "model": "library.genre",
+    "pk": 2,
+    "fields": {
+        "name": "Romance"
+    }
+},
+{
+    "model": "library.genre",
+    "pk": 3,
+    "fields": {
+        "name": "Crime"
+    }
+},
+{
+    "model": "library.genre",
+    "pk": 4,
+    "fields": {
+        "name": "Biography"
+    }
+},
+{
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+        "title": "Awesome Book Volume 2",
+        "publish_year": 2021,
+        "genre": 1,
+        "authors": [
+            1
+        ]
+    }
+},
+{
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+        "title": "How To Climb A Mountain",
+        "publish_year": 2001,
+        "genre": 3,
+        "authors": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+        "title": "Cooking With Barb",
+        "publish_year": 1983,
+        "genre": 4,
+        "authors": [
+            3
+        ]
+    }
+},
+{
+    "model": "library.book",
+    "pk": 4,
+    "fields": {
+        "title": "A Brief History of Candy Crush",
+        "publish_year": 2015,
+        "genre": 2,
+        "authors": [
+            1,
+            2,
+            3
+        ]
+    }
+}
+]

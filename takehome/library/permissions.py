@@ -14,11 +14,8 @@ class BookPermissions(permissions.BasePermission):
             ))
         elif view.action == 'destroy':
             return request.user.has_perm('library.delete_book')
-        elif view.action in ('checkout_book', 'return_book'):
-            return request.user.has_perms((
-                'library.add_checkoutbook',
-                'library.add_returnbook',
-            ))
+        elif view.action == 'checkout':
+            return request.user.has_perm('library.add_checkoutleger')
         else:
             return False
 
@@ -58,3 +55,19 @@ class UserPermissions(permissions.BasePermission):
     def has_permission(self, request, view):
         if view.action == 'list':
             return request.user.has_perm('auth.view_user')
+
+
+class CheckoutPermissions(permissions.BasePermission):
+    
+    def has_permission(self, request, view):
+        
+        if view.action in ('retrieve', 'list', 'overdue'):
+            return request.user.has_perm('library.view_checkoutleger')
+        elif view.action == 'update':
+            return request.user.has_perms(
+                ('library.add_checkoutleger', 'library.change_checkoutleger')
+            )
+        elif view.action == 'destroy':
+            return request.user.has_perm('library.delete_checkoutleger')
+        else:
+            return False

@@ -1,5 +1,7 @@
-from django.conf import settings
+from datetime import datetime, timedelta
+
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Author(models.Model):
@@ -13,7 +15,7 @@ class Genre(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=128)
-    publish_year = models.IntegerField()
+    publish_year = models.PositiveIntegerField()
     genre = models.ForeignKey(
         Genre,
         null=True,
@@ -24,27 +26,33 @@ class Book(models.Model):
         related_name='books'
     )
 
+
+def due_date_default():
+    """
+    Basic date to approximate local time
+    """
+    return datetime.now().today() + timedelta(weeks=2)
+
+
+class CheckoutLeger(models.Model):
     
-class BookCheckout(models.Model):
+    class Meta:
+        db_table = 'library_checkout_leger'
+    
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        User,
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        related_name='checkout_leger',
+        editable=False
     )
     book = models.ForeignKey(
         Book,
         null=True,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL,
+        related_name='checkout_leger',
+        editable=False
     )
-    checkout_time = models.DateTimeField()
-    due_date = models.DateField()
-    
-    
-class BookReturn(models.Model):
-    checkout = models.ForeignKey(
-        BookCheckout,
-        related_name='book_return',
-        null=True,
-        on_delete=models.SET_NULL
-    )
-    return_time = models.DateTimeField()
+    checkout_time = models.DateTimeField(auto_now_add=True)
+    return_time = models.DateTimeField(null=True)
+    due_date = models.DateField(default=due_date_default)
