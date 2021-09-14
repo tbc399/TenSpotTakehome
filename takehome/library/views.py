@@ -104,7 +104,7 @@ class CheckoutsViewSet(mixins.ListModelMixin,
                 checkout_entry, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            return Response(data=serializer.data)
+            return Response(status=status.HTTP_200_OK)
         else:
             return Response(
                 data='Only an administrator can update a due_date',

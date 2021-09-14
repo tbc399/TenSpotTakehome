@@ -1,5 +1,4 @@
 # TenSpot Interview Project
-
 Make a very basic book library application using Django and Django Rest Framework.
 There does not need to be UI for this system, just an API that can
 be interacted with from Postman/cURL/wget, etc.
@@ -107,3 +106,73 @@ Administrator users can not:
 - Last name
 - type of user
 - list of books they have checked out
+---
+---
+## Solution Implementation
+
+### Initial Setup
+Run all the migrations
+```
+> python manage.py migrate
+```
+Load up the initial data
+```
+> python manage.py loaddata data.json
+```
+This will load up the following groups with permissions:
+- Administrator
+- Editor
+- General
+
+It will also load up one user under each group in order to accomplish the 
+different roles in the spec.
+
+All three users have the same password: ``P@$$_w0rD`` (minus the escape slashes) 
+
+### Test
+Of course you can just run the tests with the basic
+```
+> python manage.py test
+```
+
+---
+### Design Notes
+The root for the api is ``/api`` and all resources from there are pretty straight
+forward according to the spec. They are
+
+- ``/books``
+
+- ``/authors``
+
+- ``/genres``
+
+- ``/users`` - (only admin access and only list view)
+
+- ``/book-checkouts``
+
+#### Checked Out Books
+So I thought about checking out a book in terms of an action you take
+with a given book. In order to checkout a book that's not currently checked
+out by some other user just hit the following:
+```
+POST /books/<id>/checkout
+```
+Return a book by deleting it from the books-checkouts resources. 
+The `id` is the book id at `/books/<id>`. Admins have access to the endpoint
+for any checked out book by any user. This is how they can administratively change
+the checkout status.
+```
+DELETE /book-checkouts/<id>
+```
+List of all the checked out books you currently have
+```
+GET /book-checkouts
+```
+List of overdue books only for and Administrator
+```
+GET /book-checkouts/overdue
+```
+Change the due date as an admin with a simple JSON patch.
+```
+PATCH /book-checkouts/<id>
+```

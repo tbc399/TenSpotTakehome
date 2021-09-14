@@ -56,9 +56,8 @@ class CheckoutsSerializer(serializers.Serializer):
         
     def update(self, instance, validated_data):
         due_date = validated_data.pop('due_date', None)
-        if due_date:
-            instance.due_date = due_date
-            instance.save()
+        instance.due_date = due_date
+        instance.save()
         return instance
     
 
