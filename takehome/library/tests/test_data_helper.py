@@ -1,6 +1,8 @@
 import random
+import datetime
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, models
+from django.contrib.auth.models import Group, Permission
 
 from library import models
 from library.tests.faker import faker
@@ -51,7 +53,7 @@ def create_genre(**kwargs):
     return models.Genre.objects.create(**defaults)
 
 
-def create_user(**kwargs):
+def create_user(groups=None, **kwargs):
     model = get_user_model()
     first_name = faker.first_name()
     last_name = faker.last_name()
@@ -64,4 +66,35 @@ def create_user(**kwargs):
     )
     if kwargs:
         defaults.update(kwargs)
-    return model.objects.create_user(**defaults)
+    user = model.objects.create_user(**defaults)
+    user.groups.set(groups or list())
+    return user
+
+
+def create_group(permissions=None, **kwargs):
+    defaults = dict(
+        name='General',
+    )
+    if kwargs:
+        defaults.update(**kwargs)
+    group = Group.objects.create(**defaults)
+    permissions = permissions or list()
+    group.permissions.set(permissions)
+    return group
+
+
+def get_permissions(*codenames):
+    return Permission.objects.filter(codename__in=codenames)
+
+
+def create_checkout_leger(book=None, user=None, **kwargs):
+    defaults = dict(
+        checkout_time=datetime.datetime.now(),
+        return_time=datetime.datetime.now() + datetime.timedelta(days=2),
+        due_date=datetime.date.today() + datetime.timedelta(weeks=2),
+        book=book or create_book(),
+        user=user or create_user()
+    )
+    if kwargs:
+        defaults.update(**kwargs)
+    return models.CheckoutLeger.objects.create(**defaults)

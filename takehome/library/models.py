@@ -35,6 +35,9 @@ def due_date_default():
 
 
 class CheckoutLeger(models.Model):
+    """
+    A leger to track when books are checked out
+    """
     
     class Meta:
         db_table = 'library_checkout_leger'

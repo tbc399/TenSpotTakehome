@@ -53,6 +53,13 @@ class CheckoutsSerializer(serializers.Serializer):
     
     class Meta:
         read_only_fields = ('book_id', 'book_title', 'user')
+        
+    def update(self, instance, validated_data):
+        due_date = validated_data.pop('due_date', None)
+        if due_date:
+            instance.due_date = due_date
+            instance.save()
+        return instance
     
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -69,7 +76,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'role', 'books')
+        fields = ('id', 'first_name', 'last_name', 'role', 'books')
         depth = 2
     
     def get_role(self, obj: User):

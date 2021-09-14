@@ -13,7 +13,7 @@ from .models import *
 class BookViewSet(viewsets.ModelViewSet):
     
     queryset = Book.objects.all()
-    permission_classes = (IsAuthenticated, BookPermissions)  # TODO
+    permission_classes = (IsAuthenticated, BookPermissions)
     
     def get_serializer_class(self):
         if self.action in ('create', 'update', 'destroy', 'partial_update'):

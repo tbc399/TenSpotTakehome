@@ -7,7 +7,7 @@ class BookPermissions(permissions.BasePermission):
         
         if view.action in ('retrieve', 'list'):
             return request.user.has_perm('library.view_book')
-        elif view.action in ('create', 'update'):
+        elif view.action in ('create', 'update', 'partial_update'):
             return request.user.has_perms((
                 'library.add_book',
                 'library.change_book'
@@ -26,10 +26,11 @@ class AuthorPermissions(permissions.BasePermission):
         
         if view.action in ('retrieve', 'list'):
             return request.user.has_perm('library.view_author')
-        elif view.action in ('create', 'update'):
-            return request.user.has_perms(
-                ('library.add_author', 'library.change_author')
-            )
+        elif view.action in ('create', 'update', 'partial_update'):
+            return request.user.has_perms((
+                'library.add_author',
+                'library.change_author'
+            ))
         elif view.action == 'destroy':
             return request.user.has_perm('library.delete_author')
         else:
@@ -63,10 +64,11 @@ class CheckoutPermissions(permissions.BasePermission):
         
         if view.action in ('retrieve', 'list', 'overdue'):
             return request.user.has_perm('library.view_checkoutleger')
-        elif view.action == 'update':
-            return request.user.has_perms(
-                ('library.add_checkoutleger', 'library.change_checkoutleger')
-            )
+        elif view.action in ('update', 'partial_update'):
+            return request.user.has_perms((
+                'library.add_checkoutleger',
+                'library.change_checkoutleger'
+            ))
         elif view.action == 'destroy':
             return request.user.has_perm('library.delete_checkoutleger')
         else:
